@@ -1,14 +1,17 @@
 const express = require("express");
+const bodyParser = require('body-parser');
+
 const app = express();
+
 const puerto = 3000;
-const cors = require("cors");
+//const cors = require("cors");
 const TemasController = require("./controllers/TemasController");
 const EditorialesController = require("./controllers/EditorialesController");
 const AutoresController = require("./controllers/AutoresController");
 const LibrosController = require("./controllers/LibrosController");
 
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 app.get("/temas", TemasController.indexGet);
 app.get("/editoriales", EditorialesController.indexGet);

@@ -11,7 +11,7 @@ class LibrosModel {
     'l.id_libro',
     'l.titulo as nombre_libro',
     'a.nombre as nombre_autor',
-    'a.apellido as apellido_autor',
+    'a.apellidos as apellido_autor',
     'l.edicion as nombre_edicion',
     'e.nombre as nombre_editorial',
     't.nombre as nombre_tema'
@@ -26,6 +26,7 @@ return libros;
     }
 
     static async insertarLibro(libro) {
+        
         let queryResult = await db('libros').insert({
             titulo: libro.titulo,
             fk_id_autor: libro.fk_id_autor,

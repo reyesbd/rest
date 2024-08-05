@@ -15,11 +15,18 @@ class LibrosController {
     }
 
     static async insertPost(req, resp) {
-        let libro = req.body;
-        let data = await LibrosModel.insertarLibro(libro);
-        resp.send(data);
+         req.on('data',async (data)=>{
+            var libro = {
+                'titulo': JSON.parse(data).titulo ,
+                'fk_id_autor': JSON.parse(data).fk_id_autor,
+                'edicion': JSON.parse(data).edicion, 
+                'fk_id_editorial': JSON.parse(data).fk_id_editorial,
+                'fk_id_tema': JSON.parse(data).fk_id_tema
+               };
+            let datos = await LibrosModel.insertarLibro(libro);
+            resp.send(datos);
+         })
     }
-
 }
 
 module.exports = LibrosController;
